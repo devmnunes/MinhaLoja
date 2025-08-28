@@ -30,8 +30,9 @@ class ProductGridItem extends StatelessWidget {
           ),
           title: Text(product.name, textAlign: TextAlign.center),
           trailing: IconButton(
+            icon: const Icon(Icons.shopping_cart_outlined),
+            color: Theme.of(context).colorScheme.secondary,
             onPressed: () {
-             
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text('Produto adicionado com sucesso!'),
@@ -46,8 +47,6 @@ class ProductGridItem extends StatelessWidget {
               );
               cart.addItem(product);
             },
-            icon: const Icon(Icons.shopping_cart_outlined),
-            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
         child: GestureDetector(
