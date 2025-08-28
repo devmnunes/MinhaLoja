@@ -3,7 +3,9 @@ import 'package:loja/components/app_drawer.dart';
 import 'package:loja/components/product_grid.dart';
 import 'package:loja/models/cart.dart';
 import 'package:loja/utils/app_routes.dart';
+import 'package:loja/widgets/city_line.dart';
 import 'package:provider/provider.dart';
+import 'package:badges/badges.dart' as badges;
 
 
 enum FilterOptions {
@@ -25,7 +27,16 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Minha Loja'),
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 130, 131, 132),
+        title: Column(
+          children: [
+            Text('Street Wear Company', style: TextStyle(fontSize: 25),),
+            SizedBox(height: 1),
+            CityLine(),
+          ],
+        ),
+        
         actions: [
           PopupMenuButton(
             icon: const Icon(Icons.more_vert),
@@ -54,10 +65,14 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               onPressed: () {
                 Navigator.of(context).pushNamed(AppRoutes.cart);
               },
-              icon: const Icon(Icons.shopping_cart),
+              icon: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Icon(Icons.shopping_cart),
+              ),
             ),
-            builder: (ctx, cart, child) => Badge(
-              value: cart.itemsCount.toString(),
+            builder: (ctx, cart, child) => badges.Badge(
+              badgeContent: Text(cart.itemsCount.toString()),
+              position: badges.BadgePosition.topEnd(top: -5, end: 8),
               child: child!,
             ),
           ),
