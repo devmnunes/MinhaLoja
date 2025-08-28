@@ -4,9 +4,8 @@ import 'package:loja/models/product.dart';
 import 'package:loja/utils/app_routes.dart';
 import 'package:provider/provider.dart';
 
-
-class ProductItem extends StatelessWidget {
-  const ProductItem({Key? key}) : super(key: key);
+class ProductGridItem extends StatelessWidget {
+  const ProductGridItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +23,27 @@ class ProductItem extends StatelessWidget {
                 product.toggleFavorite();
               },
               icon: Icon(
-                  product.isFavorite ? Icons.favorite : Icons.favorite_border),
+                product.isFavorite ? Icons.favorite : Icons.favorite_border,
+              ),
               color: Theme.of(context).colorScheme.secondary,
             ),
           ),
-          title: Text(
-            product.name,
-            textAlign: TextAlign.center,
-          ),
+          title: Text(product.name, textAlign: TextAlign.center),
           trailing: IconButton(
             onPressed: () {
-              product.toggleCart();
+             
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Produto adicionado com sucesso!'),
+                  duration: Duration(seconds: 2),
+                  action: SnackBarAction(
+                    label: 'DESFAZER',
+                    onPressed: () {
+                      cart.removeSingleItem(product.id);
+                    },
+                  ),
+                ),
+              );
               cart.addItem(product);
             },
             icon: const Icon(Icons.shopping_cart_outlined),
@@ -42,15 +51,11 @@ class ProductItem extends StatelessWidget {
           ),
         ),
         child: GestureDetector(
-          child: Image.network(
-            product.imageUrl,
-            fit: BoxFit.cover,
-          ),
+          child: Image.network(product.imageUrl, fit: BoxFit.cover),
           onTap: () {
-            Navigator.of(context).pushNamed(
-              AppRoutes.productDetail,
-              arguments: product,
-            );
+            Navigator.of(
+              context,
+            ).pushNamed(AppRoutes.productDetail, arguments: product);
           },
         ),
       ),
