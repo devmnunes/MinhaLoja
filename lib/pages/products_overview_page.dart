@@ -27,10 +27,12 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 130, 131, 132),
         title: Column(
           children: [
-            Text('Minha Loja'),
-            SizedBox(height: 4),
+            Text('Street Wear Company', style: TextStyle(fontSize: 25),),
+            SizedBox(height: 1),
             CityLine(),
           ],
         ),

@@ -40,7 +40,7 @@ class _CityLineState extends State<CityLine> {
  
     return Text(
       text,
-      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white),
+      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: const Color.fromARGB(255, 2, 2, 2)),
       overflow: TextOverflow.ellipsis,
     );
   }
