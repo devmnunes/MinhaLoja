@@ -4,6 +4,7 @@ import 'package:loja/components/product_grid.dart';
 import 'package:loja/models/cart.dart';
 import 'package:loja/utils/app_routes.dart';
 import 'package:provider/provider.dart';
+import 'package:badges/badges.dart' as badges;
 
 
 enum FilterOptions {
@@ -56,8 +57,8 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               },
               icon: const Icon(Icons.shopping_cart),
             ),
-            builder: (ctx, cart, child) => Badge(
-              value: cart.itemsCount.toString(),
+            builder: (ctx, cart, child) => badges.Badge(
+              badgeContent: Text(cart.itemsCount.toString()),
               child: child!,
             ),
           ),
