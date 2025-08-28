@@ -55,10 +55,14 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               onPressed: () {
                 Navigator.of(context).pushNamed(AppRoutes.cart);
               },
-              icon: const Icon(Icons.shopping_cart),
+              icon: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Icon(Icons.shopping_cart),
+              ),
             ),
             builder: (ctx, cart, child) => badges.Badge(
               badgeContent: Text(cart.itemsCount.toString()),
+              position: badges.BadgePosition.topEnd(top: -5, end: 8),
               child: child!,
             ),
           ),
