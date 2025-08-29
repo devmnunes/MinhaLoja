@@ -11,9 +11,7 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: [
           AppBar(
-            centerTitle: true,
             title: const Text('Bem-vindo'),
-            backgroundColor: const Color.fromARGB(70, 0, 0, 0),
             automaticallyImplyLeading: false,
           ),
           const Divider(),
@@ -22,7 +20,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Loja'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
-                AppRoutes.home,
+                AppRoutes.HOME,
               );
             },
           ),
@@ -32,7 +30,17 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Pedidos'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
-                AppRoutes.orders,
+                AppRoutes.ORDERS,
+              );
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.edit),
+            title: const Text('Gerenciamento de Produtos'),
+            onTap: () {
+              Navigator.of(context).pushReplacementNamed(
+                AppRoutes.PRODUCTS,
               );
             },
           ),

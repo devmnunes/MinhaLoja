@@ -33,6 +33,7 @@ class ProductGridItem extends StatelessWidget {
             icon: const Icon(Icons.shopping_cart_outlined),
             color: Theme.of(context).colorScheme.secondary,
             onPressed: () {
+              ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text('Produto adicionado com sucesso!'),
@@ -54,7 +55,7 @@ class ProductGridItem extends StatelessWidget {
           onTap: () {
             Navigator.of(
               context,
-            ).pushNamed(AppRoutes.productDetail, arguments: product);
+            ).pushNamed(AppRoutes.PRODUCT_DETAIL, arguments: product);
           },
         ),
       ),
