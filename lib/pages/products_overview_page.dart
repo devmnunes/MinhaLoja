@@ -29,7 +29,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
       appBar: AppBar(
         title: Column(
           children: [
-            Text('Street Wear Company', style: TextStyle(fontSize: 25),),
+            Text('Street Company', style: TextStyle(fontSize: 25),),
             SizedBox(height: 1),
             CityLine(),
           ],
