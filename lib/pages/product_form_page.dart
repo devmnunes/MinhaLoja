@@ -1,4 +1,4 @@
-import 'dart:nativewrappers/_internal/vm/lib/math_patch.dart';
+
 
 import 'package:flutter/material.dart';
 import 'package:loja/models/product.dart';
@@ -57,14 +57,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
 
     _formKey.currentState?.save();
 
-    final newProduct = Product(
-      id: DateTime.now().toString(),
-      name: _formData['nome'] as String,
-      description: _formData['descrição'] as String,
-      price: _formData['preço'] as double,
-      imageUrl: _formData['imageUrl'] as String,
-    );
-    Provider.of(context, listen: false).addProduct(newProduct);
+    
+    Provider.of(context, listen: false).addProductFromData(_formData);
     Navigator.of(context).pop();
   }
 
