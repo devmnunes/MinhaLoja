@@ -2,6 +2,7 @@ import 'dart:nativewrappers/_internal/vm/lib/math_patch.dart';
 
 import 'package:flutter/material.dart';
 import 'package:loja/models/product.dart';
+import 'package:provider/provider.dart';
 
 class ProductFormPage extends StatefulWidget {
   const ProductFormPage({super.key});
@@ -63,6 +64,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
       price: _formData['preço'] as double,
       imageUrl: _formData['imageUrl'] as String,
     );
+    Provider.of(context).addProduct(newProduct);
+    Navigator.of(context).pop();
   }
 
   @override
@@ -106,7 +109,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   final nome = _nome ?? '';
 
                   if (nome.trim().isEmpty) {
-                    return 'Nome é obrigatório';
+                    return 'Nome do produto é obrigatório';
                   }
 
                   if (nome.trim().length < 3) {
@@ -136,6 +139,15 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 },
                 onSaved: (preco) =>
                     _formData['preço'] = double.parse(preco ?? '0'),
+                    validator: (_preco) {
+                      final precoString = _preco ?? '-1';
+                      final preco = double.tryParse(precoString) ?? -1;
+
+                      if (preco <= 0) {
+                        return 'Preço inválido';
+                      }
+                      return null;
+                    },
               ),
 
               TextFormField(
@@ -154,6 +166,18 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 focusNode: _descriptionFocus,
                 maxLines: 2,
                 onSaved: (descicao) => _formData['descrição'] = descicao ?? '-',
+                validator: (_descricao) {
+                  final descricao = _descricao ?? '';
+
+                  if (descricao.trim().isEmpty) {
+                    return 'Descrição do produto é obrigatório';
+                  }
+
+                  if (descricao.trim().length < 8) {
+                    return 'Nome precisa no mínimo 3 letras';
+                  }
+                  return null;
+                },
               ),
 
               Row(
