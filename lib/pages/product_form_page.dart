@@ -64,7 +64,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
       price: _formData['preço'] as double,
       imageUrl: _formData['imageUrl'] as String,
     );
-    Provider.of(context).addProduct(newProduct);
+    Provider.of(context, listen: false).addProduct(newProduct);
     Navigator.of(context).pop();
   }
 
