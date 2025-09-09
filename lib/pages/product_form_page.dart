@@ -1,4 +1,7 @@
+import 'dart:nativewrappers/_internal/vm/lib/math_patch.dart';
+
 import 'package:flutter/material.dart';
+import 'package:loja/models/product.dart';
 
 class ProductFormPage extends StatefulWidget {
   const ProductFormPage({super.key});
@@ -36,9 +39,30 @@ class _ProductFormPageState extends State<ProductFormPage> {
     setState(() {});
   }
 
+  bool isValidImageUrl(String url) {
+    bool isValidUrl = Uri.tryParse(url)?.hasAbsolutePath ?? false;
+    bool endsWithFile =
+        url.toLowerCase().endsWith('.png') ||
+        url.toLowerCase().endsWith('.jpg') ||
+        url.toLowerCase().endsWith('.jpeg');
+    return isValidUrl && endsWithFile;
+  }
+
   void _submitForm() {
+    final isValid = _formKey.currentState?.validate() ?? false;
+    if (!isValid) {
+      return;
+    }
+
     _formKey.currentState?.save();
-    print(_formData.values);
+
+    final newProduct = Product(
+      id: DateTime.now().toString(),
+      name: _formData['nome'] as String,
+      description: _formData['descrição'] as String,
+      price: _formData['preço'] as double,
+      imageUrl: _formData['imageUrl'] as String,
+    );
   }
 
   @override
@@ -78,6 +102,18 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   FocusScope.of(context).requestFocus(_priceFocus);
                 },
                 onSaved: (nome) => _formData['nome'] = nome ?? '-',
+                validator: (_nome) {
+                  final nome = _nome ?? '';
+
+                  if (nome.trim().isEmpty) {
+                    return 'Nome é obrigatório';
+                  }
+
+                  if (nome.trim().length < 3) {
+                    return 'Nome precisa no mínimo 3 letras';
+                  }
+                  return null;
+                },
               ),
 
               TextFormField(
@@ -143,6 +179,13 @@ class _ProductFormPageState extends State<ProductFormPage> {
                       onFieldSubmitted: (_) => _submitForm(),
                       onSaved: (imageUrl) =>
                           _formData['imageUrl'] = imageUrl ?? '-',
+                      validator: (_imageUrl) {
+                        final imageUrl = _imageUrl ?? '';
+                        if (!isValidImageUrl(imageUrl)) {
+                          return 'Informe uma Url válida';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   Container(
