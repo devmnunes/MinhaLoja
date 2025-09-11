@@ -7,7 +7,6 @@ class Product with ChangeNotifier {
   final double price;
   final String imageUrl;
   bool isFavorite;
-  bool isCart;
 
   Product({
     required this.id,
@@ -16,16 +15,10 @@ class Product with ChangeNotifier {
     required this.price,
     required this.imageUrl,
     this.isFavorite = false,
-    this.isCart = false,
   });
 
   void toggleFavorite() {
     isFavorite = !isFavorite;
-    notifyListeners();
-  }
-
-  void toggleCart() {
-    isCart = !isCart;
     notifyListeners();
   }
 }
