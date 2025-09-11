@@ -82,9 +82,10 @@ class _ProductFormPageState extends State<ProductFormPage> {
     Provider.of<ProductList>(
       context,
       listen: false,
-    ).saveProduct(_formData);
-
-    Navigator.of(context).pop();
+    ).saveProduct(_formData).then((value) {
+      Navigator.of(context).pop();
+    }
+  );
   }
 
   @override
@@ -215,11 +216,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     alignment: Alignment.center,
                     child: _imageUrlController.text.isEmpty
                         ? const Text('Informe a Url')
-                        : FittedBox(
-                            fit: BoxFit.cover,
-                            child: Image.network(_imageUrlController.text),
+                        : Image.network(_imageUrlController.text),
                           ),
-                  ),
                 ],
               ),
             ],
