@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:loja/models/cart.dart';
+import 'package:loja/models/product.dart';
+import 'package:loja/utils/app_routes.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/models/cart.dart';
-import 'package:shop/models/product.dart';
-import 'package:shop/utils/app_routes.dart';
 
 class ProductGridItem extends StatelessWidget {
   const ProductGridItem({Key? key}) : super(key: key);
@@ -59,7 +59,7 @@ class ProductGridItem extends StatelessWidget {
           ),
           onTap: () {
             Navigator.of(context).pushNamed(
-              AppRoutes.productDetail,
+              AppRoutes.PRODUCT_DETAIL,
               arguments: product,
             );
           },

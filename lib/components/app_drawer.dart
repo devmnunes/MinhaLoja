@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop/utils/app_routes.dart';
+import 'package:loja/utils/app_routes.dart';
+
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Loja'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
-                AppRoutes.home,
+                AppRoutes.HOME,
               );
             },
           ),
@@ -29,7 +30,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Pedidos'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
-                AppRoutes.orders,
+                AppRoutes.ORDERS,
               );
             },
           ),
@@ -39,7 +40,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Gerenciar Produtos'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
-                AppRoutes.products,
+                AppRoutes.PRODUCTS,
               );
             },
           ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:loja/models/product.dart';
+import 'package:loja/models/product_list.dart';
+import 'package:loja/utils/app_routes.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/models/product.dart';
-import 'package:shop/models/product_list.dart';
-import 'package:shop/utils/app_routes.dart';
+
 
 class ProductItem extends StatelessWidget {
   final Product product;
@@ -28,14 +29,14 @@ class ProductItem extends StatelessWidget {
               color: Theme.of(context).colorScheme.primary,
               onPressed: () {
                 Navigator.of(context).pushNamed(
-                  AppRoutes.productForm,
+                  AppRoutes.PRODUCT_FORM,
                   arguments: product,
                 );
               },
             ),
             IconButton(
               icon: const Icon(Icons.delete),
-              color: Theme.of(context).errorColor,
+              color: Theme.of(context).primaryColor,
               onPressed: () {
                 showDialog<bool>(
                   context: context,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:loja/models/product.dart';
+import 'package:loja/models/product_list.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/models/product.dart';
-import 'package:shop/models/product_list.dart';
+
 
 class ProductFormPage extends StatefulWidget {
   const ProductFormPage({Key? key}) : super(key: key);
@@ -65,6 +66,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
     bool endsWithFile = url.toLowerCase().endsWith('.png') ||
         url.toLowerCase().endsWith('.jpg') ||
         url.toLowerCase().endsWith('.jpeg');
+        url.toLowerCase().endsWith('.webp');
     return isValidUrl && endsWithFile;
   }
 
