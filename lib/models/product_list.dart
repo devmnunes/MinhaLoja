@@ -26,7 +26,7 @@ class ProductList with ChangeNotifier {
       name: data['name'] as String,
       description: data['description'] as String,
       price: data['price'] as double,
-      imageUrl: data['imageUrl'] as String, 
+      imageUrl: data['imageUrl'] as String,
     );
 
     if (hasId) {
@@ -37,26 +37,27 @@ class ProductList with ChangeNotifier {
   }
 
   Future<void> addProduct(Product product) {
-    final future  = http.post(
-      Uri.parse('$_baseUrl/products.json'),
-      body: jsonEncode(
-        {
-        "name" : product.name,
-        "description" : product.description,
-        "price" : product.price,
-        "imageUrl" : product.imageUrl,
-        "isFavorite" : product.isFavorite,
-      },
-      ),
+    final future = http.post(
+      Uri.parse('$_baseUrl/products'),
+      body: jsonEncode({
+        "name": product.name,
+        "description": product.description,
+        "price": product.price,
+        "imageUrl": product.imageUrl,
+        "isFavorite": product.isFavorite,
+      }),
     );
-     return future.then((response) {
-        final id = jsonDecode(response.body)['name'];
-      _items.add(Product(
-        id: id,
-        name: product.name, 
-        description: product.description, 
-        price: product.price, 
-        imageUrl: product.imageUrl,));
+    return future.then((response) {
+      final id = jsonDecode(response.body)['name'];
+      _items.add(
+        Product(
+          id: id,
+          name: product.name,
+          description: product.description,
+          price: product.price,
+          imageUrl: product.imageUrl,
+        ),
+      );
       notifyListeners();
     });
   }
