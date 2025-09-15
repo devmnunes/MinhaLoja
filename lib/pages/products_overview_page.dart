@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:loja/components/app_drawer.dart';
 import 'package:loja/components/product_grid.dart';
 import 'package:loja/models/cart.dart';
+import 'package:loja/models/product_list.dart';
 import 'package:loja/utils/app_routes.dart';
 import 'package:provider/provider.dart';
 
-
-enum FilterOptions {
-  favorite,
-  all,
-}
+enum FilterOptions { favorite, all }
 
 class ProductsOverviewPage extends StatefulWidget {
   const ProductsOverviewPage({Key? key}) : super(key: key);
@@ -20,6 +17,12 @@ class ProductsOverviewPage extends StatefulWidget {
 
 class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
   bool _showFavoriteOnly = false;
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<ProductList>(context, listen: false).loadProducts();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +59,8 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               },
               icon: const Icon(Icons.shopping_cart),
             ),
-            builder: (ctx, cart, child) => Badge(
-              label: Text(cart.itemsCount.toString()),
-              child: child!,
-            ),
+            builder: (ctx, cart, child) =>
+                Badge(label: Text(cart.itemsCount.toString()), child: child!),
           ),
         ],
       ),

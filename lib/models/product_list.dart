@@ -7,7 +7,7 @@ import 'package:loja/data/dummy_data.dart';
 import 'package:loja/models/product.dart';
 
 class ProductList with ChangeNotifier {
-  final _baseUrl = 'https://shop-cod3r-c1bff-default-rtdb.firebaseio.com';
+  final _url = 'https://shop-cod3r-c1bff-default-rtdb.firebaseio.com';
   final List<Product> _items = dummyProducts;
 
   List<Product> get items => [..._items];
@@ -16,6 +16,11 @@ class ProductList with ChangeNotifier {
 
   int get itemsCount {
     return _items.length;
+  }
+
+  Future<void> loadProducts() async {
+    final response = await http.get(Uri.parse(_url));
+    print(jsonDecode(response.body));
   }
 
   Future<void> saveProduct(Map<String, Object> data) {
@@ -38,7 +43,7 @@ class ProductList with ChangeNotifier {
 
   Future<void> addProduct(Product product) async {
     final response = await http.post(
-      Uri.parse('$_baseUrl/products.json'),
+      Uri.parse(_url),
       body: jsonEncode({
         "name": product.name,
         "description": product.description,
@@ -49,16 +54,16 @@ class ProductList with ChangeNotifier {
     );
 
     final id = jsonDecode(response.body)['name'];
-      _items.add(
-        Product(
-          id: id,
-          name: product.name,
-          description: product.description,
-          price: product.price,
-          imageUrl: product.imageUrl,
-        ),
-      );
-      notifyListeners();
+    _items.add(
+      Product(
+        id: id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        imageUrl: product.imageUrl,
+      ),
+    );
+    notifyListeners();
   }
 
   Future<void> updateProduct(Product product) {
@@ -80,22 +85,3 @@ class ProductList with ChangeNotifier {
     }
   }
 }
-
-// bool _showFavoriteOnly = false;
-
-//   List<Product> get items {
-//     if (_showFavoriteOnly) {
-//       return _items.where((prod) => prod.isFavorite).toList();
-//     }
-//     return [..._items];
-//   }
-
-//   void showFavoriteOnly() {
-//     _showFavoriteOnly = true;
-//     notifyListeners();
-//   }
-
-//   void showAll() {
-//     _showFavoriteOnly = false;
-//     notifyListeners();
-//   }
