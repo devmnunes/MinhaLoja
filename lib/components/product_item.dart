@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:loja/exceptions/http_exception.dart';
 import 'package:loja/models/product.dart';
 import 'package:loja/models/product_list.dart';
 import 'package:loja/utils/app_routes.dart';
 import 'package:provider/provider.dart';
 
-
 class ProductItem extends StatelessWidget {
   final Product product;
 
-  const ProductItem(
-    this.product, {
-    Key? key,
-  }) : super(key: key);
+  const ProductItem(this.product, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final msg = ScaffoldMessenger.of(context);
     return ListTile(
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage(product.imageUrl),
-      ),
+      leading: CircleAvatar(backgroundImage: NetworkImage(product.imageUrl)),
       title: Text(product.name),
       trailing: SizedBox(
         width: 100,
@@ -28,10 +24,9 @@ class ProductItem extends StatelessWidget {
               icon: const Icon(Icons.edit),
               color: Theme.of(context).colorScheme.primary,
               onPressed: () {
-                Navigator.of(context).pushNamed(
-                  AppRoutes.PRODUCT_FORM,
-                  arguments: product,
-                );
+                Navigator.of(
+                  context,
+                ).pushNamed(AppRoutes.PRODUCT_FORM, arguments: product);
               },
             ),
             IconButton(
@@ -54,12 +49,20 @@ class ProductItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                ).then((value) {
+                ).then((value) async {
                   if (value ?? false) {
-                    Provider.of<ProductList>(
-                      context,
-                      listen: false,
-                    ).removeProduct(product);
+                    try {
+                      await Provider.of<ProductList>(
+                        context,
+                        listen: false,
+                      ).removeProduct(product);
+                    } on HttpException catch (error) {
+                      msg.showSnackBar(
+                        SnackBar(
+                          content: Text(error.toString()),
+                          ),
+                        );
+                    }
                   }
                 });
               },
