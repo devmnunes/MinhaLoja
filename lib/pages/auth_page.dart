@@ -22,8 +22,17 @@ class AuthPage extends StatelessWidget {
           Container(
             width: double.infinity,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-
+                Container(
+                  child: Text('Minha Loja', 
+                  style: TextStyle(
+                    fontSize: 45,
+                    fontFamily: 'Anton',
+                    
+                  ),),
+                )
               ],
             ),
           )
