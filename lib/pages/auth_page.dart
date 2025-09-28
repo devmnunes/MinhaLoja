@@ -15,8 +15,8 @@ class AuthPage extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color.fromRGBO(215, 117, 255, 0.5),
-                  Color.fromRGBO(255, 188, 117, 0.9),
+                  Color.fromRGBO(252, 252, 252, 0.886),
+                  Color.fromRGBO(103, 13, 145, 0.878),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -30,12 +30,13 @@ class AuthPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
+                  margin: EdgeInsets.only(bottom: 20),
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 70),
                   // cascade operator
                   transform: Matrix4.rotationZ(-8 * pi / 180)..translate(-10.0),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.deepOrange.shade900,
+                    color: const Color.fromARGB(255, 0, 0, 0),
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 8,
@@ -45,8 +46,12 @@ class AuthPage extends StatelessWidget {
                     ],
                   ),
                   child: Text(
-                    'Minha Loja',
-                    style: TextStyle(fontSize: 45, fontFamily: 'Anton'),
+                    'HIGH DROP',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 45,
+                      fontFamily: 'Anton',
+                    ),
                   ),
                 ),
                 AuthForm(),
