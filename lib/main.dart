@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loja/models/auth.dart';
 import 'package:loja/models/cart.dart';
 import 'package:loja/models/order_list.dart';
 import 'package:loja/models/product_list.dart';
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => OrderList(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => Auth(),
         ),
       ],
       child: MaterialApp(
