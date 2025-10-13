@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:loja/components/app_drawer.dart';
-import 'package:loja/components/product_grid.dart';
-import 'package:loja/models/cart.dart';
-import 'package:loja/models/product_list.dart';
-import 'package:loja/utils/app_routes.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/components/app_drawer.dart';
+import 'package:shop/components/badge.dart';
+import 'package:shop/components/product_grid.dart';
+import 'package:shop/models/cart.dart';
+import 'package:shop/models/product_list.dart';
+import 'package:shop/utils/app_routes.dart';
 
-enum FilterOptions { favorite, all }
+enum FilterOptions {
+  favorite,
+  all,
+}
 
 class ProductsOverviewPage extends StatefulWidget {
   const ProductsOverviewPage({Key? key}) : super(key: key);
@@ -22,9 +26,10 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ProductList>(context, listen: false).loadProducts().then((
-      value,
-    ) {
+    Provider.of<ProductList>(
+      context,
+      listen: false,
+    ).loadProducts().then((value) {
       setState(() {
         _isLoading = false;
       });
@@ -62,19 +67,20 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
           Consumer<Cart>(
             child: IconButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(AppRoutes.CART);
+                Navigator.of(context).pushNamed(AppRoutes.cart);
               },
               icon: const Icon(Icons.shopping_cart),
             ),
-            builder: (ctx, cart, child) =>
-                Badge(label: Text(cart.itemsCount.toString()), child: child!),
+            builder: (ctx, cart, child) => Badge(
+              value: cart.itemsCount.toString(),
+              child: child!,
+            ),
           ),
         ],
       ),
-      body: _isLoading ? Center(child: CircularProgressIndicator())
-      
-      
-      : ProductGrid(_showFavoriteOnly),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : ProductGrid(_showFavoriteOnly),
       drawer: const AppDrawer(),
     );
   }

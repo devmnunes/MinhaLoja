@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:loja/components/cart_item.dart';
-import 'package:loja/models/cart.dart';
-import 'package:loja/models/order_list.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/components/cart_item.dart';
+import 'package:shop/models/cart.dart';
+import 'package:shop/models/order_list.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -13,23 +13,35 @@ class CartPage extends StatelessWidget {
     final items = cart.items.values.toList();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Carrinho')),
+      appBar: AppBar(
+        title: const Text('Carrinho'),
+      ),
       body: Column(
         children: [
           Card(
-            margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+            margin: const EdgeInsets.symmetric(
+              horizontal: 15,
+              vertical: 25,
+            ),
             child: Padding(
               padding: const EdgeInsets.all(10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Total', style: TextStyle(fontSize: 20)),
+                  const Text(
+                    'Total',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
                   const SizedBox(width: 10),
                   Chip(
                     backgroundColor: Theme.of(context).colorScheme.primary,
                     label: Text(
                       'R\$${cart.totalAmount.toStringAsFixed(2)}',
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   const Spacer(),
@@ -51,7 +63,10 @@ class CartPage extends StatelessWidget {
 }
 
 class CartButton extends StatefulWidget {
-  const CartButton({super.key, required this.cart});
+  const CartButton({
+    Key? key,
+    required this.cart,
+  }) : super(key: key);
 
   final Cart cart;
 
@@ -65,12 +80,13 @@ class _CartButtonState extends State<CartButton> {
   @override
   Widget build(BuildContext context) {
     return _isLoading
-        ? CircularProgressIndicator()
+        ? const CircularProgressIndicator()
         : TextButton(
             onPressed: widget.cart.itemsCount == 0
                 ? null
                 : () async {
                     setState(() => _isLoading = true);
+
                     await Provider.of<OrderList>(
                       context,
                       listen: false,

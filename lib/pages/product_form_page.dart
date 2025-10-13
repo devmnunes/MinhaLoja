@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:loja/models/product.dart';
-import 'package:loja/models/product_list.dart';
 import 'package:provider/provider.dart';
+import 'package:shop/models/product.dart';
+import 'package:shop/models/product_list.dart';
 
 class ProductFormPage extends StatefulWidget {
   const ProductFormPage({Key? key}) : super(key: key);
@@ -64,11 +64,9 @@ class _ProductFormPageState extends State<ProductFormPage> {
 
   bool isValidImageUrl(String url) {
     bool isValidUrl = Uri.tryParse(url)?.hasAbsolutePath ?? false;
-    bool endsWithFile =
-        url.toLowerCase().endsWith('.png') ||
+    bool endsWithFile = url.toLowerCase().endsWith('.png') ||
         url.toLowerCase().endsWith('.jpg') ||
         url.toLowerCase().endsWith('.jpeg');
-    url.toLowerCase().endsWith('.webp');
     return isValidUrl && endsWithFile;
   }
 
@@ -88,25 +86,24 @@ class _ProductFormPageState extends State<ProductFormPage> {
         context,
         listen: false,
       ).saveProduct(_formData);
+
+      Navigator.of(context).pop();
     } catch (error) {
       await showDialog<void>(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: Text('Ocorreu um erro'),
-          content: Text('Ocorreu um erro para salvar o produto.'),
+          title: const Text('Ocorreu um erro!'),
+          content: const Text('Ocorreu um erro para salvar o produto.'),
           actions: [
             TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('OK'),
+              child: const Text('Ok'),
+              onPressed: () => Navigator.of(context).pop(),
             ),
           ],
         ),
       );
     } finally {
       setState(() => _isLoading = false);
-      Navigator.of(context).pop();
     }
   }
 
@@ -116,11 +113,16 @@ class _ProductFormPageState extends State<ProductFormPage> {
       appBar: AppBar(
         title: const Text('Formulário de Produto'),
         actions: [
-          IconButton(onPressed: _submitForm, icon: const Icon(Icons.save)),
+          IconButton(
+            onPressed: _submitForm,
+            icon: const Icon(Icons.save),
+          )
         ],
       ),
       body: _isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
           : Padding(
               padding: const EdgeInsets.all(15),
               child: Form(
@@ -137,15 +139,12 @@ class _ProductFormPageState extends State<ProductFormPage> {
                       onSaved: (name) => _formData['name'] = name ?? '',
                       validator: (_name) {
                         final name = _name ?? '';
-
                         if (name.trim().isEmpty) {
                           return 'Nome é obrigatório.';
                         }
-
                         if (name.trim().length < 3) {
                           return 'Nome precisa no mínimo de 3 letras.';
                         }
-
                         return null;
                       },
                     ),
@@ -202,8 +201,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         Expanded(
                           child: TextFormField(
                             decoration: const InputDecoration(
-                              labelText: 'Url da Imagem',
-                            ),
+                                labelText: 'Url da Imagem'),
                             keyboardType: TextInputType.url,
                             textInputAction: TextInputAction.done,
                             focusNode: _imageUrlFocus,
@@ -225,9 +223,15 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         Container(
                           height: 100,
                           width: 100,
-                          margin: const EdgeInsets.only(top: 10, left: 10),
+                          margin: const EdgeInsets.only(
+                            top: 10,
+                            left: 10,
+                          ),
                           decoration: BoxDecoration(
-                            border: Border.all(color: Colors.grey, width: 1),
+                            border: Border.all(
+                              color: Colors.grey,
+                              width: 1,
+                            ),
                           ),
                           alignment: Alignment.center,
                           child: _imageUrlController.text.isEmpty
