@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:loja/models/cart.dart';
+import 'package:loja/models/cart_item.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/models/cart.dart';
-import 'package:shop/models/cart_item.dart';
+
+
 
 class CartItemWidget extends StatelessWidget {
   final CartItem cartItem;
@@ -14,7 +16,7 @@ class CartItemWidget extends StatelessWidget {
       key: ValueKey(cartItem.id),
       direction: DismissDirection.endToStart,
       background: Container(
-        color: Theme.of(context).errorColor,
+        color: Theme.of(context).colorScheme.primary,
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.only(right: 20),
         margin: const EdgeInsets.symmetric(

@@ -1,10 +1,10 @@
 import 'dart:convert';
+import 'dart:io' show HttpException;
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:shop/exceptions/http_exception.dart';
-import 'package:shop/models/product.dart';
-import 'package:shop/utils/constants.dart';
+import 'package:loja/models/product.dart';
+import 'package:loja/utils/constants.dart';
 
 class ProductList with ChangeNotifier {
   final String _token;
@@ -148,21 +148,4 @@ class ProductList with ChangeNotifier {
   }
 }
 
-// bool _showFavoriteOnly = false;
 
-//   List<Product> get items {
-//     if (_showFavoriteOnly) {
-//       return _items.where((prod) => prod.isFavorite).toList();
-//     }
-//     return [..._items];
-//   }
-
-//   void showFavoriteOnly() {
-//     _showFavoriteOnly = true;
-//     notifyListeners();
-//   }
-
-//   void showAll() {
-//     _showFavoriteOnly = false;
-//     notifyListeners();
-//   }
