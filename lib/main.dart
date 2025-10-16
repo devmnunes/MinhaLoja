@@ -4,12 +4,10 @@ import 'package:loja/models/cart.dart';
 import 'package:loja/models/order_list.dart';
 import 'package:loja/models/product_list.dart';
 import 'package:loja/pages/auth_or_home_page.dart';
-import 'package:loja/pages/auth_page.dart';
 import 'package:loja/pages/cart_page.dart';
 import 'package:loja/pages/orders_page.dart';
 import 'package:loja/pages/product_detail_page.dart';
 import 'package:loja/pages/product_form_page.dart';
-import 'package:loja/pages/products_overview_page.dart';
 import 'package:loja/pages/products_page.dart';
 
 import 'package:loja/utils/app_routes.dart';
@@ -29,8 +27,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => Auth()),
         ChangeNotifierProxyProvider<Auth, ProductList>(
           create: (_) => ProductList('', []),
-          update: (ctx, auth, previousProducts) =>
-              ProductList(auth.token ?? '', previous?.items ?? []),
+          update: (ctx, auth, previous) {
+            return ProductList(auth.token ?? '', previous?.items ?? [],
+            );
           },
         ),
         ChangeNotifierProvider(create: (_) => Cart()),
