@@ -15,11 +15,7 @@ class ProductList with ChangeNotifier {
   List<Product> get favoriteItems =>
       _items.where((prod) => prod.isFavorite).toList();
 
-  ProductList([
-    this._token = '',
-    this._userId = '',
-    this._items = const [],
-  ]);
+  ProductList([this._token = '', this._userId = '', this._items = const []]);
 
   int get itemsCount {
     return _items.length;
@@ -34,13 +30,12 @@ class ProductList with ChangeNotifier {
     if (response.body == 'null') return;
 
     final favResponse = await http.get(
-      Uri.parse(
-        '${Constants.userFavoritesUrl}/$_userId.json?auth=$_token',
-      ),
+      Uri.parse('${Constants.userFavoritesUrl}/$_userId.json?auth=$_token'),
     );
 
-    Map<String, dynamic> favData =
-        favResponse.body == 'null' ? {} : jsonDecode(favResponse.body);
+    Map<String, dynamic> favData = favResponse.body == 'null'
+        ? {}
+        : jsonDecode(favResponse.body);
 
     Map<String, dynamic> data = jsonDecode(response.body);
     data.forEach((productId, productData) {
@@ -80,24 +75,24 @@ class ProductList with ChangeNotifier {
   Future<void> addProduct(Product product) async {
     final response = await http.post(
       Uri.parse('${Constants.productBaseUrl}.json?auth=$_token'),
-      body: jsonEncode(
-        {
-          "name": product.name,
-          "description": product.description,
-          "price": product.price,
-          "imageUrl": product.imageUrl,
-        },
-      ),
+      body: jsonEncode({
+        "name": product.name,
+        "description": product.description,
+        "price": product.price,
+        "imageUrl": product.imageUrl,
+      }),
     );
 
     final id = jsonDecode(response.body)['name'];
-    _items.add(Product(
-      id: id,
-      name: product.name,
-      description: product.description,
-      price: product.price,
-      imageUrl: product.imageUrl,
-    ));
+    _items.add(
+      Product(
+        id: id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        imageUrl: product.imageUrl,
+      ),
+    );
     notifyListeners();
   }
 
@@ -107,15 +102,14 @@ class ProductList with ChangeNotifier {
     if (index >= 0) {
       await http.patch(
         Uri.parse(
-            '${Constants.productBaseUrl}/${product.id}.json?auth=$_token'),
-        body: jsonEncode(
-          {
-            "name": product.name,
-            "description": product.description,
-            "price": product.price,
-            "imageUrl": product.imageUrl,
-          },
+          '${Constants.productBaseUrl}/${product.id}.json?auth=$_token',
         ),
+        body: jsonEncode({
+          "name": product.name,
+          "description": product.description,
+          "price": product.price,
+          "imageUrl": product.imageUrl,
+        }),
       );
 
       _items[index] = product;
@@ -133,19 +127,15 @@ class ProductList with ChangeNotifier {
 
       final response = await http.delete(
         Uri.parse(
-            '${Constants.productBaseUrl}/${product.id}.json?auth=$_token'),
+          '${Constants.productBaseUrl}/${product.id}.json?auth=$_token',
+        ),
       );
 
       if (response.statusCode >= 400) {
         _items.insert(index, product);
         notifyListeners();
-        throw HttpException(
-          msg: 'Não foi possível excluir o produto.',
-          statusCode: response.statusCode,
-        );
+        throw HttpException('Não foi possível excluir o produto.');
       }
     }
   }
 }
-
-
