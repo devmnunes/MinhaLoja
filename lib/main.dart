@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           appBarTheme: AppBarTheme(
-            backgroundColor: Colors.purple,
+            backgroundColor: Color.fromRGBO(103, 13, 145, 0.878),
             centerTitle: true,
           ),
           colorScheme: ColorScheme.fromSwatch().copyWith(
