@@ -151,6 +151,7 @@ class _AuthFormState extends State<AuthForm> {
                 ElevatedButton(
                   onPressed: _submit,
                   style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(103, 13, 145, 0.878),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
@@ -161,6 +162,9 @@ class _AuthFormState extends State<AuthForm> {
                   ),
                   child: Text(
                     _authMode == AuthMode.login ? 'ENTRAR' : 'REGISTRAR',
+                    style: TextStyle(
+                      color: Colors.white,
+                    )
                   ),
                 ),
               const Spacer(),
