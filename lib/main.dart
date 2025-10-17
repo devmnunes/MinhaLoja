@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
             centerTitle: true,
           ),
           colorScheme: ColorScheme.fromSwatch().copyWith(
-            primary: Colors.purple,
+            primary: Color.fromRGBO(103, 13, 145, 0.878),
             secondary: Colors.deepOrange,
           ),
           fontFamily: 'Lato',
