@@ -52,6 +52,13 @@ class AuthPage extends StatelessWidget {
                   child: const Text(
                     'HIGH DROP',
                     style: TextStyle(
+                      shadows: [
+                        Shadow(
+                          color: Colors.black87,
+                          offset: Offset(4, 4),
+                          blurRadius: 2,
+                        ),
+                      ],
                       fontSize: 45,
                       fontFamily: 'Anton',
                       color: Colors.white,
