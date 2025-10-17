@@ -62,8 +62,6 @@ class AuthPage extends StatelessWidget {
                       fontSize: 45,
                       fontFamily: 'Anton',
                       color: Colors.white,
-                      
-                      
                     ),
                   ),
                 ),
