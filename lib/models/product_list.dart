@@ -21,26 +21,66 @@ class ProductList with ChangeNotifier {
   }
 
   Future<void> loadProducts() async {
-    _items.clear();
+    try {
+      _items.clear();
 
-    final response = await http.get(
-      Uri.parse('${Constants.productBaseUrl}.json?auth=$_token'),
-    );
-    if (response.body == 'null') return;
-    Map<String, dynamic> data = jsonDecode(response.body);
-    data.forEach((productId, productData) {
-      _items.add(
-        Product(
-          id: productId,
-          name: productData['name'],
-          description: productData['description'],
-          price: productData['price'],
-          imageUrl: productData['imageUrl'],
-          isFavorite: productData['isFavorite'],
-        ),
-      );
-    });
-    notifyListeners();
+      final response = await http.get(
+        Uri.parse('${Constants.productBaseUrl}.json?auth=$_token'),
+      ).timeout(const Duration(seconds: 10));
+
+      // Debug: verifique a resposta
+      print('Status Code: ${response.statusCode}');
+      print('Response Body: ${response.body}');
+
+      if (response.statusCode >= 400) {
+        throw HttpException(
+          'Falha ao carregar produtos. Código: ${response.statusCode}',
+        );
+      }
+
+      if (response.body == 'null' || response.body.isEmpty) {
+        print('Nenhum produto encontrado no servidor');
+        notifyListeners();
+        return;
+      }
+
+      final data = jsonDecode(response.body) as Map<String, dynamic>;
+      
+      // Limpa a lista antes de adicionar novos itens
+      _items.clear();
+      
+      data.forEach((productId, productData) {
+        // Verifica se os dados necessários existem
+        if (productData is Map<String, dynamic> &&
+            productData['name'] != null &&
+            productData['description'] != null &&
+            productData['price'] != null) {
+          
+          _items.add(
+            Product(
+              id: productId,
+              name: productData['name'] as String,
+              description: productData['description'] as String,
+              price: (productData['price'] is int)
+                  ? (productData['price'] as int).toDouble()
+                  : productData['price'] as double,
+              imageUrl: productData['imageUrl'] as String? ?? '',
+              isFavorite: productData['isFavorite'] as bool? ?? false,
+            ),
+          );
+        } else {
+          print('Dados inválidos para o produto $productId: $productData');
+        }
+      });
+      
+      print('${_items.length} produtos carregados com sucesso');
+      notifyListeners();
+      
+    } catch (error) {
+      print('Erro ao carregar produtos: $error');
+      // Re-lançar o erro para tratamento superior se necessário
+      throw HttpException('Erro ao carregar produtos: $error');
+    }
   }
 
   Future<void> saveProduct(Map<String, Object> data) {
