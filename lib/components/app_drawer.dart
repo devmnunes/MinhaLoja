@@ -11,11 +11,14 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.white,
+
       child: Column(
         children: [
           AppBar(
             title: const Text('Bem vindo Usuário!'),
             automaticallyImplyLeading: false,
+            
           ),
           const Divider(),
           ListTile(

@@ -14,7 +14,14 @@ class CartPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Carrinho'),
+        title: const Text('Carrinho', 
+        style: TextStyle(
+          color: Color.fromARGB(255, 255, 255, 255),
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Lato',
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -40,7 +47,7 @@ class CartPage extends StatelessWidget {
                     label: Text(
                       'R\$${cart.totalAmount.toStringAsFixed(2)}',
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 255, 255, 255),
                       ),
                     ),
                   ),

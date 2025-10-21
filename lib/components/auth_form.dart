@@ -151,7 +151,7 @@ class _AuthFormState extends State<AuthForm> {
                 ElevatedButton(
                   onPressed: _submit,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(103, 13, 145, 0.878),
+                    backgroundColor: Color.fromRGBO(0, 0, 0, 0.875),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),

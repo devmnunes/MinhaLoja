@@ -43,7 +43,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
         title: const Text('Minha Loja'),
         actions: [
           PopupMenuButton(
-            icon: const Icon(Icons.more_vert),
+            icon: const Icon(Icons.more_vert, color: Colors.white),
             itemBuilder: (_) => [
               const PopupMenuItem(
                 value: FilterOptions.favorite,
@@ -69,7 +69,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               onPressed: () {
                 Navigator.of(context).pushNamed(AppRoutes.CART);
               },
-              icon: const Icon(Icons.shopping_cart),
+              icon: const Icon(Icons.shopping_cart, color: Colors.white),
             ),
             builder: (ctx, cart, child) => Badge(
               label: Text(cart.itemsCount.toString()),
@@ -81,7 +81,8 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : ProductGrid(_showFavoriteOnly),
-      drawer: const AppDrawer(),
+      drawer: const AppDrawer(), 
+    
     );
   }
 }
