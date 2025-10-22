@@ -16,8 +16,9 @@ Opção para novos usuários se registrarem.
 2. Catálogo de Produtos
 Visualização de todos os produtos disponíveis.
 
-
-
+<div align="center">
+<img src="https://github.com/user-attachments/assets/61f2ec48-51ca-41b7-9964-e0c4d45571a5" width="700px" />
+</div>
 
 3. Dashboard Administrativo
 Menu lateral com navegação intuitiva.
@@ -37,7 +38,7 @@ Opções:
 </div>
 
 
-3. Carrinho de Compras
+4. Carrinho de Compras
 Visualização detalhada dos itens adicionados.
 
 Cálculo automático do total.
