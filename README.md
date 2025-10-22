@@ -45,7 +45,9 @@ Cálculo automático do total.
 
 Botão de finalização de compra.
 
-https://Imagem%2520do%2520WhatsApp%2520de%25202025-10-22%2520%C3%A0(s)%252008.11.52_b20198a2.jpg
+<div align="center">
+<img src="https://github.com/user-attachments/assets/f71c4eaa-a8e7-4481-8435-1bf3fc58fa6b" width="700px" />
+</div>
 
 🚀 Tecnologias Utilizadas
 Frontend: HTML, CSS, JavaScript
