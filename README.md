@@ -46,7 +46,7 @@ Cálculo automático do total.
 Botão de finalização de compra.
 
 <div align="center">
-<img src="https://github.com/user-attachments/assets/f71c4eaa-a8e7-4481-8435-1bf3fc58fa6b" width="700px" />
+<img src="https://github.com/user-attachments/assets/14f7ebd8-506f-4afe-bda0-6f61d917c1c6" width="700px" />
 </div>
 
 🚀 Tecnologias Utilizadas
