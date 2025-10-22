@@ -10,7 +10,7 @@ Acesso seguro com e-mail e senha.
 Opção para novos usuários se registrarem.
 
 div align="center"
-img src="https://Imagem%2520do%2520WhatsApp%2520de%25202025-10-22%2520%C3%A0(s)%252008.11.51_ef24f92b.jpg" width="700px" /
+img src="![Image](https://github.com/user-attachments/assets/61f2ec48-51ca-41b7-9964-e0c4d45571a5)" width="700px" /
 /div
 
 
