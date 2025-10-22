@@ -9,9 +9,8 @@ Acesso seguro com e-mail e senha.
 
 Opção para novos usuários se registrarem.
 
-div align="center"
-img src="![Image](https://github.com/user-attachments/assets/61f2ec48-51ca-41b7-9964-e0c4d45571a5)" width="700px" /
-/div
+
+img src="![Image](https://github.com/user-attachments/assets/61f2ec48-51ca-41b7-9964-e0c4d45571a5)" 
 
 
 2. Dashboard Administrativo
