@@ -17,7 +17,7 @@ Opção para novos usuários se registrarem.
 Visualização de todos os produtos disponíveis.
 
 <div align="center">
-<img src="https://github.com/user-attachments/assets/61f2ec48-51ca-41b7-9964-e0c4d45571a5" width="700px" />
+<img src="https://github.com/user-attachments/assets/a847e4eb-b651-4130-8fc7-6668084ca151" width="700px" />
 </div>
 
 3. Dashboard Administrativo
