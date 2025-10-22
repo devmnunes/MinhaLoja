@@ -9,7 +9,10 @@ Acesso seguro com e-mail e senha.
 
 Opção para novos usuários se registrarem.
 
-https://Imagem%2520do%2520WhatsApp%2520de%25202025-10-22%2520%C3%A0(s)%252008.11.51_ef24f92b.jpg
+div align="center"
+img src="https://Imagem%2520do%2520WhatsApp%2520de%25202025-10-22%2520%C3%A0(s)%252008.11.51_ef24f92b.jpg" width="0px" /
+/div
+
 
 2. Dashboard Administrativo
 Menu lateral com navegação intuitiva.
