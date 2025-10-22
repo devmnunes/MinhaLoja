@@ -10,7 +10,7 @@ Acesso seguro com e-mail e senha.
 Opção para novos usuários se registrarem.
 
 div align="center"
-img src="https://Imagem%2520do%2520WhatsApp%2520de%25202025-10-22%2520%C3%A0(s)%252008.11.51_ef24f92b.jpg" width="0px" /
+img src="https://Imagem%2520do%2520WhatsApp%2520de%25202025-10-22%2520%C3%A0(s)%252008.11.51_ef24f92b.jpg" width="700px" /
 /div
 
 
@@ -27,7 +27,10 @@ Opções:
 
 ✅ Sair
 
-https://Imagem%2520do%2520WhatsApp%2520de%25202025-10-22%2520%C3%A0(s)%252008.11.52_92d72f4c.jpg
+div align="center"
+img src="![Image](https://github.com/user-attachments/assets/1a775edd-ca9a-4b75-a30e-1322e02a7df0)" width="700px" /
+/div
+
 
 3. Carrinho de Compras
 Visualização detalhada dos itens adicionados.
