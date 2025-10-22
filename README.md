@@ -29,7 +29,7 @@ Opções:
 ✅ Sair
 
 div align="center"
-img src="![Image](https://github.com/user-attachments/assets/1a775edd-ca9a-4b75-a30e-1322e02a7df0)" width="700px" /
+img src="https://github.com/user-attachments/assets/1a775edd-ca9a-4b75-a30e-1322e02a7df0" width="700px" /
 /div
 
 
