@@ -50,7 +50,7 @@ class AuthPage extends StatelessWidget {
                     ],
                   ),
                   child: const Text(
-                    'HIGH DROP',
+                    'HIGH DROPER',
                     style: TextStyle(
                       shadows: [
                         Shadow(

@@ -68,6 +68,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
     bool endsWithFile = url.toLowerCase().endsWith('.png') ||
         url.toLowerCase().endsWith('.jpg') ||
         url.toLowerCase().endsWith('.jpeg');
+        url.toLowerCase().endsWith('.webp');
     return isValidUrl && endsWithFile;
   }
 

@@ -40,10 +40,15 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Minha Loja'),
+        title: const Text('HIGH DROPER',
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 29,
+          fontFamily: 'Lato',
+        ),),
         actions: [
           PopupMenuButton(
-            icon: const Icon(Icons.more_vert, color: Colors.white),
+            icon: const Icon(Icons.more_vert),
             itemBuilder: (_) => [
               const PopupMenuItem(
                 value: FilterOptions.favorite,
@@ -69,7 +74,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               onPressed: () {
                 Navigator.of(context).pushNamed(AppRoutes.CART);
               },
-              icon: const Icon(Icons.shopping_cart, color: Colors.white),
+              icon: const Icon(Icons.shopping_cart),
             ),
             builder: (ctx, cart, child) => Badge(
               label: Text(cart.itemsCount.toString()),

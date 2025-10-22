@@ -3,31 +3,33 @@ import 'package:loja/models/auth.dart';
 import 'package:loja/utils/app_routes.dart';
 import 'package:provider/provider.dart';
 
-
-
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Colors.white,
-
       child: Column(
         children: [
           AppBar(
-            title: const Text('Bem vindo Usuário!'),
+            title: const Text(
+              'HIGH DROPER',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 29,
+                fontFamily: 'Lato',
+              ),
+            ),
             automaticallyImplyLeading: false,
-            
           ),
           const Divider(),
           ListTile(
             leading: const Icon(Icons.shop),
             title: const Text('Loja'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(
-                AppRoutes.AUTH_OR_HOME,
-              );
+              Navigator.of(
+                context,
+              ).pushReplacementNamed(AppRoutes.AUTH_OR_HOME);
             },
           ),
           const Divider(),
@@ -35,9 +37,7 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.payment),
             title: const Text('Pedidos'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(
-                AppRoutes.ORDERS,
-              );
+              Navigator.of(context).pushReplacementNamed(AppRoutes.ORDERS);
             },
           ),
           const Divider(),
@@ -45,9 +45,7 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.edit),
             title: const Text('Gerenciar Produtos'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(
-                AppRoutes.PRODUCTS,
-              );
+              Navigator.of(context).pushReplacementNamed(AppRoutes.PRODUCTS);
             },
           ),
           const Divider(),
@@ -55,13 +53,10 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Sair'),
             onTap: () {
-              Provider.of<Auth>(
+              Provider.of<Auth>(context, listen: false).logout();
+              Navigator.of(
                 context,
-                listen: false,
-              ).logout();
-              Navigator.of(context).pushReplacementNamed(
-                AppRoutes.AUTH_OR_HOME,
-              );
+              ).pushReplacementNamed(AppRoutes.AUTH_OR_HOME);
             },
           ),
         ],
