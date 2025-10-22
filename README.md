@@ -28,9 +28,9 @@ Opções:
 
 ✅ Sair
 
-div align="center"
-img src="https://github.com/user-attachments/assets/f71c4eaa-a8e7-4481-8435-1bf3fc58fa6b" width="700px" /
-/div
+<div align="center">
+img src="https://github.com/user-attachments/assets/f71c4eaa-a8e7-4481-8435-1bf3fc58fa6b" width="700px" />
+</div>
 
 
 3. Carrinho de Compras
