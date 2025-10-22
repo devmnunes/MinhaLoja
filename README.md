@@ -13,9 +13,13 @@ Opção para novos usuários se registrarem.
 <img src="https://github.com/user-attachments/assets/61f2ec48-51ca-41b7-9964-e0c4d45571a5" width="700px" />
 </div>
 
+2. Catálogo de Produtos
+Visualização de todos os produtos disponíveis.
 
 
-2. Dashboard Administrativo
+
+
+3. Dashboard Administrativo
 Menu lateral com navegação intuitiva.
 
 Opções:
