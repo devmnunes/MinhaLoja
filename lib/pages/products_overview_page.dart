@@ -4,13 +4,10 @@ import 'package:loja/components/product_grid.dart';
 import 'package:loja/models/cart.dart';
 import 'package:loja/models/product_list.dart';
 import 'package:loja/utils/app_routes.dart';
+import 'package:loja/widgets/city_line.dart';
 import 'package:provider/provider.dart';
 
-
-enum FilterOptions {
-  favorite,
-  all,
-}
+enum FilterOptions { favorite, all }
 
 class ProductsOverviewPage extends StatefulWidget {
   const ProductsOverviewPage({Key? key}) : super(key: key);
@@ -26,10 +23,9 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
   @override
   void initState() {
     super.initState();
-    Provider.of<ProductList>(
-      context,
-      listen: false,
-    ).loadProducts().then((value) {
+    Provider.of<ProductList>(context, listen: false).loadProducts().then((
+      value,
+    ) {
       setState(() {
         _isLoading = false;
       });
@@ -40,12 +36,21 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HIGH DROPER',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 29,
-          fontFamily: 'Lato',
-        ),),
+        title: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              'HIGH DROPER',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 29,
+                fontFamily: 'Lato',
+              ),
+            ),
+            CityLine()
+          ],
+        ),
         actions: [
           PopupMenuButton(
             icon: const Icon(Icons.more_vert),
@@ -76,18 +81,15 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               },
               icon: const Icon(Icons.shopping_cart),
             ),
-            builder: (ctx, cart, child) => Badge(
-              label: Text(cart.itemsCount.toString()),
-              child: child!,
-            ),
+            builder: (ctx, cart, child) =>
+                Badge(label: Text(cart.itemsCount.toString()), child: child!),
           ),
         ],
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : ProductGrid(_showFavoriteOnly),
-      drawer: const AppDrawer(), 
-    
+      drawer: const AppDrawer(),
     );
   }
 }
