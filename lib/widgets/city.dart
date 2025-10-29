@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import '../services/location_service.dart';
  
-class CityLine extends StatefulWidget {
-  const CityLine({super.key});
+class City extends StatefulWidget {
+  const City({super.key});
  
   @override
-  State<CityLine> createState() => _CityLineState();
+  State<City> createState() => _CityState();
 }
  
-class _CityLineState extends State<CityLine> {
+class _CityState extends State<City> {
   String? _city;
   bool _loading = true;
  

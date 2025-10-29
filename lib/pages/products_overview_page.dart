@@ -4,7 +4,7 @@ import 'package:loja/components/product_grid.dart';
 import 'package:loja/models/cart.dart';
 import 'package:loja/models/product_list.dart';
 import 'package:loja/utils/app_routes.dart';
-import 'package:loja/widgets/city_line.dart';
+import 'package:loja/widgets/city.dart';
 import 'package:provider/provider.dart';
 
 enum FilterOptions { favorite, all }
@@ -48,7 +48,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
                 fontFamily: 'Lato',
               ),
             ),
-            CityLine()
+            City()
           ],
         ),
         actions: [
