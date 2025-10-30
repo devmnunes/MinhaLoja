@@ -8,6 +8,9 @@ class AppDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<Auth>(context, listen: false);
+    final isAdmin = auth.isAdmin; // Supondo que você tenha essa propriedade no seu model Auth
+
     return Drawer(
       child: Column(
         children: [
@@ -27,9 +30,7 @@ class AppDrawer extends StatelessWidget {
             leading: const Icon(Icons.shop),
             title: const Text('Loja'),
             onTap: () {
-              Navigator.of(
-                context,
-              ).pushReplacementNamed(AppRoutes.AUTH_OR_HOME);
+              Navigator.of(context).pushReplacementNamed(AppRoutes.AUTH_OR_HOME);
             },
           ),
           const Divider(),
@@ -41,22 +42,23 @@ class AppDrawer extends StatelessWidget {
             },
           ),
           const Divider(),
-          ListTile(
-            leading: const Icon(Icons.edit),
-            title: const Text('Gerenciar Produtos'),
-            onTap: () {
-              Navigator.of(context).pushReplacementNamed(AppRoutes.PRODUCTS);
-            },
-          ),
-          const Divider(),
+          // Correção da sintaxe do if
+          if (isAdmin) ...[
+            ListTile(
+              leading: const Icon(Icons.edit),
+              title: const Text('Gerenciar Produtos'),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed(AppRoutes.PRODUCTS);
+              },
+            ),
+            const Divider(),
+          ],
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Sair'),
             onTap: () {
               Provider.of<Auth>(context, listen: false).logout();
-              Navigator.of(
-                context,
-              ).pushReplacementNamed(AppRoutes.AUTH_OR_HOME);
+              Navigator.of(context).pushReplacementNamed(AppRoutes.AUTH_OR_HOME);
             },
           ),
         ],
