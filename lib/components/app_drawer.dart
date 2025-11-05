@@ -9,7 +9,7 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<Auth>(context, listen: false);
-    final isAdmin = auth.isAdmin; // Supondo que você tenha essa propriedade no seu model Auth
+    final isAdmin = auth.isAdmin;
 
     return Drawer(
       child: Column(
@@ -42,7 +42,6 @@ class AppDrawer extends StatelessWidget {
             },
           ),
           const Divider(),
-          // Correção da sintaxe do if
           if (isAdmin) ...[
             ListTile(
               leading: const Icon(Icons.edit),
